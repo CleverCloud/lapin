@@ -497,7 +497,7 @@
         "extra_args": [
           {
             "name": "payload",
-            "type": "Vec<u8>"
+            "type": "&[u8]"
           },
           {
             "name": "properties",

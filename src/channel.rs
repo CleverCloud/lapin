@@ -375,7 +375,7 @@ impl Channel {
     async fn send_method_frame_with_body(
         &self,
         method: AMQPClass,
-        payload: Vec<u8>,
+        payload: &[u8],
         properties: BasicProperties,
         publisher_confirms_result: Option<PublisherConfirm>,
     ) -> Result<PublisherConfirm> {
@@ -394,7 +394,6 @@ impl Channel {
         // a content body frame 8 bytes of overhead
         frames.extend(
             payload
-                .as_slice()
                 .chunks(frame_max as usize - 8)
                 .map(|chunk| AMQPFrame::Body(self.id, chunk.into())),
         );
